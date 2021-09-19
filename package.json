@@ -2,7 +2,7 @@
   "name": "markdown-word-count",
   "displayName": "Markdown Word Count",
   "description": "Word Count for Markdown, support CJK, Emoji",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "CurlyBrackets",
   "engines": {
     "vscode": "^1.60.0"
@@ -23,7 +23,7 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
-  "main": "./out/extension.js",
+  "main": "./out/main.js",
   "repository": {
     "url": "https://github.com/curly210102/vscode-markdown-word-count.git",
     "type": "git"

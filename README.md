@@ -52,3 +52,9 @@ Welcome open issue to the GitHub repo, if there are any feedback (problems with 
 Milestone: publish initial version.
 
 Support Recognition for CJK, Emoji, HTML Tag, Markdown Syntax.
+
+### 0.0.2-0.0.3
+
+Update icon and description.
+
+Fix runnable problem.
