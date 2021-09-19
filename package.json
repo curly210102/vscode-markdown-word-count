@@ -1,13 +1,22 @@
 {
   "name": "markdown-word-count",
   "displayName": "Markdown Word Count",
-  "description": "Support Word Count for Markdown",
+  "description": "Word Count for Markdown, support CJK, Emoji",
   "version": "0.0.1",
   "publisher": "CurlyBrackets",
   "engines": {
     "vscode": "^1.60.0"
   },
   "icon": "icon.png",
+  "keywords": [
+    "word",
+    "count",
+    "markdown",
+    "word-count",
+    "word count",
+    "cjk",
+    "emoji"
+  ],
   "categories": [
     "Other"
   ],
@@ -79,5 +88,6 @@
   },
   "dependencies": {
     "emoji-regex": "^9.2.2"
-  }
+  },
+  "license": "MIT"
 }
