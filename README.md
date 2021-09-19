@@ -1,70 +1,54 @@
-# markdown-word-count README
+# Markdown Word Count README
 
-This is the README for your extension "markdown-word-count". After writing up a brief description, we recommend including the following sections.
+It's a powerful word count for Markdown, which supports recognize Latin, CJK, Emoji, etc.
+
+Inspired by popular document editor, the extension provides count of words, lines, characters, characters with spaces.
+
+Also, Support count for full-text and selection.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Recognition Supported
 
-For example if there is an image subfolder under your extension project workspace:
+- CJK
+- Emoji
 
-\!\[feature X\]\(images/feature-x.png\)
+![Support CJK and Emoji](./screenshots/CJK.png)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Counts Supported
 
-## Requirements
+The extension currently support count of Words, Lines, Characters, Characters with spaces.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+By default, Words Count shown in the status bar, all counts shown in the tooltip opened by hover the item of status bar.
+
+![Default Effect](./screenshots/tooltip.png)
+
+You can customize the status bar content by config [markdown-word-count.statusBarTemplate](#extension-settings)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+- `markdown-word-count.statusBarCounts`: customize the content shown in status bar.
 
-## Known Issues
+    ``` json
+    // settings.json
+    "markdown-word-count.statusBarCounts": {
+        "words": true,
+        "lines": false,
+        "characters": false,
+        "charactersWithSpaces": false
+    }
+    ```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Feedback and Support
+
+Welcome open issue to the GitHub repo, if there are any feedback (problems with usage, find a bug, feature request, language support and so on).
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
+Milestone: publish initial version.
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Support Recognition for CJK, Emoji, HTML Tag, Markdown Syntax.
