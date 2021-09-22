@@ -2,7 +2,7 @@
   "name": "markdown-word-count",
   "displayName": "Markdown Word Count",
   "description": "Word Count for Markdown, support CJK, Emoji",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "CurlyBrackets",
   "engines": {
     "vscode": "^1.60.0"
@@ -32,6 +32,11 @@
     "configuration": {
       "title": "Markdown Word Count",
       "properties": {
+        "markdown-word-count.selectionCount": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable count selection text"
+        },
         "markdown-word-count.statusBarCounts": {
           "type": "object",
           "properties": {

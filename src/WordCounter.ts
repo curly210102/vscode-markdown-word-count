@@ -1,4 +1,5 @@
 import emojiRegexp from "emoji-regex/es2015/RGI_Emoji";
+import type { IWordCountResult } from "./extension";
 
 export default class WordCounter {
   static cjkPatternString =
@@ -30,6 +31,14 @@ export default class WordCounter {
         withSpace ? this.characterPatternWithSpace : this.characterPattern
       )?.length ?? 0
     );
+  }
+  count(text: string): IWordCountResult {
+    return {
+      words: this.countWords(text),
+      lines: this.countWords(text),
+      characters: this.countCharacters(text),
+      charactersWithSpaces: this.countCharacters(text, true)
+    };
   }
 }
 
