@@ -92,6 +92,7 @@
     "vscode-test": "^1.5.2"
   },
   "dependencies": {
+    "@homegrown/word-counter": "^0.1.4",
     "emoji-regex": "^9.2.2"
   },
   "license": "MIT"

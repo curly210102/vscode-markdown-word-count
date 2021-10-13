@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import WordCounter from "./WordCounter";
+import { count, IWordCountResult } from "@homegrown/word-counter";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -18,12 +18,6 @@ export function activate(context: vscode.ExtensionContext) {
   updater.update();
 }
 
-export interface IWordCountResult {
-  words: number;
-  lines: number;
-  characters: number;
-  charactersWithSpaces: number;
-}
 type WordCountResultKeys = keyof IWordCountResult;
 class WordCountUIUpdater {
   private counts = [
@@ -32,7 +26,6 @@ class WordCountUIUpdater {
     "characters" as const,
     "charactersWithSpaces" as const,
   ];
-  private wordCounter = new WordCounter();
   private statusBarShownCounts: typeof this.counts[number][] = [];
   private enableSelectionCount: boolean = false;
   private statusBarItem;
@@ -106,7 +99,7 @@ class WordCountUIUpdater {
         this.enableSelectionCount && selectionContent.length > 0;
       if (showSelectionCount) {
         selectionContent.forEach((text) => {
-          const countResult = this.wordCounter.count(text);
+          const countResult = count(text);
           Object.keys(selectionCount).forEach((key) => {
             selectionCount[key as WordCountResultKeys] +=
               countResult[key as WordCountResultKeys] ?? 0;
@@ -114,7 +107,7 @@ class WordCountUIUpdater {
         });
       }
 
-      const fullTextCount = this.wordCounter.count(markdownContent);
+      const fullTextCount = count(markdownContent);
 
       const countText = {
         words: `${
