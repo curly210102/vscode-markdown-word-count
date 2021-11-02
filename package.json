@@ -2,7 +2,7 @@
   "name": "markdown-word-count",
   "displayName": "Markdown Word Count",
   "description": "Word Count for Markdown, support CJK, Emoji",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "CurlyBrackets",
   "engines": {
     "vscode": "^1.60.0"
@@ -92,7 +92,7 @@
     "vscode-test": "^1.5.2"
   },
   "dependencies": {
-    "@homegrown/word-counter": "^0.1.4",
+    "@homegrown/word-counter": "^0.1.6",
     "emoji-regex": "^9.2.2"
   },
   "license": "MIT"

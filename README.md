@@ -78,3 +78,7 @@ Fix runnable problem.
 ### 0.0.4
 
 Add Feature: selection word count.
+
+### 0.0.5
+
+Improve: Use `@homegrown/word-counter`.
