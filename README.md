@@ -82,3 +82,7 @@ Add Feature: selection word count.
 ### 0.0.5
 
 Improve: Use `@homegrown/word-counter`.
+
+### 0.0.6
+
+Dependency: Update `@homegrown/word-counter`
