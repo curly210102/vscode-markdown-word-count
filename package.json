@@ -7,7 +7,7 @@
   "engines": {
     "vscode": "^1.62.0"
   },
-  "icon": "icon.png",
+  "icon": "images/icon.png",
   "keywords": [
     "word",
     "count",
@@ -23,6 +23,7 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
+  "browser": "./out/main.js",
   "main": "./out/main.js",
   "repository": {
     "url": "https://github.com/curly210102/vscode-markdown-word-count.git",
