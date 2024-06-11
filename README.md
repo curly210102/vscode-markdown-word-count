@@ -1,88 +1,63 @@
-# Markdown Word Count README
+# Markdown Word Count
 
-It's a powerful word count for Markdown, which supports recognize Latin, CJK, Emoji, etc.
+[简体中文](./README.zh-CN.md) ∙ [日本語](./README.ja.md) ∙ [한국어](./README.ko.md)
 
-Inspired by popular document editor, the extension provides count of words, lines, characters, characters with spaces.
+This is a simple extension for counting words in Markdown and plain text files. It can display the word count in the bottom status bar.
 
-Also, Support count for full-text and selection.
+In addition to supporting languages that use spaces to separate words, it also supports languages that do not use spaces, such as CJK characters (Chinese, Korean, Japanese) and Emoji.
 
 ## Features
 
-### Recognition Supported
+- Multi-language Support
+- Count words, lines, characters, and characters with spaces
+- Selection text count
 
-- CJK
+### Multi-language Support
+
+Currently supports recognition of:
+
+- Languages that use spaces to separate words (e.g., English)
+- CJK characters, such as Chinese, Japanese, Korean
 - Emoji
 
 ![Support CJK and Emoji](./screenshots/CJK.png)
 
-### Counts Supported
+### Multiple Counts
 
-The extension currently support count of Words, Lines, Characters, Characters with spaces.
+Currently supports counting of words, lines, characters, and characters with spaces.
 
-By default, Words Count shown in the status bar, all counts shown in the tooltip opened by hover the item of status bar.
+By default, word count is shown in the status bar. All counts are shown in the tooltip that appears when you hover over the status bar item.
 
 ![Default Effect](./screenshots/tooltip.png)
 
-You can customize the status bar content by config [markdown-word-count.statusBarTemplate](#extension-settings).
+You can customize the status bar content via config [markdown-word-count.statusBarCounts](#settings).
 
-### Selection Count
+### Selection text count
 
-This extension support to count selection text.
+This extension supports counting selected text.
 
 ![Selection Count](./screenshots/selection.png)
 
-By default, this feature is disabled, you can enable it by config [markdown-word-count.selectionCount](#extension-settings).
+You can disable it via config [markdown-word-count.selectionCount](#settings).
 
-## Extension Settings
+## Settings
 
-This extension contributes the following settings:
+the following settings:
 
 - `markdown-word-count.statusBarCounts`: customize the content shown in status bar.
+- `markdown-word-count.selectionCount`: enable/disable selection count feature.
 
-  ```json
-  // settings.json
+```json
+  // default settings.json
   "markdown-word-count.statusBarCounts": {
       "words": true,
       "lines": false,
       "characters": false,
       "charactersWithSpaces": false
-  }
-  ```
-
-- `markdown-word-count.selectionCount`: enable/disable selection count feature.
-
-  ```json
+  },
   "markdown-word-count.selectionCount": false
   ```
 
 ## Feedback and Support
 
 Welcome open issue to the GitHub repo, if there are any feedback (problems with usage, find a bug, feature request, language support and so on).
-
-## Release Notes
-
-### 0.0.1
-
-Milestone: publish initial version.
-
-Support Recognition for CJK, Emoji.
-
-### 0.0.2
-
-Update icon and description.
-
-### 0.0.3
-
-Fix runnable problem.
-
-### 0.0.4
-
-Add Feature: selection word count.
-
-### 0.0.5
-
-Improve: Use `@homegrown/word-counter`.
-
-### 0.0.6
-
-Dependency: Update `@homegrown/word-counter`
