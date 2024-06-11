@@ -76,7 +76,7 @@ class WordCountUIUpdater {
   }
   update() {
     const editor = vscode.window.activeTextEditor;
-    if (!editor || !["markdown"].includes(editor.document.languageId)) {
+    if (!editor || !["markdown", "plaintext"].includes(editor.document.languageId)) {
       this.statusBarItem.hide();
       return;
     }
