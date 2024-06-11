@@ -76,7 +76,7 @@ class WordCountUIUpdater {
   }
   update() {
     const editor = vscode.window.activeTextEditor;
-    if (!editor || editor.document.languageId !== "markdown") {
+    if (!editor || !["markdown"].includes(editor.document.languageId)) {
       this.statusBarItem.hide();
       return;
     }
@@ -108,23 +108,24 @@ class WordCountUIUpdater {
       }
 
       const fullTextCount = count(markdownContent);
+      const SEPARATION = "/";
 
       const countText = {
         words: `${
-          (showSelectionCount ? selectionCount.words + "／" : "") +
+          (showSelectionCount ? selectionCount.words + SEPARATION : "") +
           fullTextCount.words
         } Words`,
         lines: `${
-          (showSelectionCount ? selectionCount.lines + "／" : "") +
+          (showSelectionCount ? selectionCount.lines + SEPARATION : "") +
           fullTextCount.lines
         } Lines`,
         characters: `${
-          (showSelectionCount ? selectionCount.characters + "／" : "") +
+          (showSelectionCount ? selectionCount.characters + SEPARATION : "") +
           fullTextCount.characters
         } Characters`,
         charactersWithSpaces: `${
           (showSelectionCount
-            ? selectionCount.charactersWithSpaces + "／"
+            ? selectionCount.charactersWithSpaces + SEPARATION
             : "") + fullTextCount.charactersWithSpaces
         } Characters with spaces`,
       };
@@ -132,7 +133,7 @@ class WordCountUIUpdater {
       this.statusBarItem.text = `$(markdown) ${this.statusBarShownCounts
         .map((id) => countText[id] ?? "")
         .join(" | ")}`;
-      this.statusBarItem.tooltip = Object.values(countText).join("\n");
+      this.statusBarItem.tooltip = Object.values(countText).map(text => text.replace(SEPARATION, ` ${SEPARATION} `)).join("\n");
       this.statusBarItem.show();
     } catch (e) {
       console.log(e);
