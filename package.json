@@ -1,7 +1,7 @@
 {
   "name": "markdown-word-count",
   "displayName": "Markdown Word Count",
-  "description": "Word Count for Markdown, support CJK, Emoji",
+  "description": "A Word Count extension for Markdown and plain text files,support CJK and Emoji, support selection count.",
   "version": "0.0.6",
   "publisher": "CurlyBrackets",
   "engines": {
@@ -21,7 +21,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:markdown"
+    "onLanguage:markdown",
+    "onLanguage:plaintext"
   ],
   "browser": "./out/main.js",
   "main": "./out/main.js",
@@ -35,7 +36,7 @@
       "properties": {
         "markdown-word-count.selectionCount": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Enable count selection text"
         },
         "markdown-word-count.statusBarCounts": {
