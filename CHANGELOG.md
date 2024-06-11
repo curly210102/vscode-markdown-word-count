@@ -26,11 +26,12 @@
 
 ## [0.0.7]
 
-🆕 Added: Support VSCode for Web
+🆕 Added: Support VSCode for Web [#4](https://github.com/curly210102/vscode-markdown-word-count/issues/4)
 
 🆕 Added: Support plaintext file
 
 📌 Changed: Enable selectionCount as default
 
+🔧 Fixed: Separation character does not display properly [#3](https://github.com/curly210102/vscode-markdown-word-count/issues/3)
+
 💬 Document: multi-language introduction
-  
