@@ -2,7 +2,7 @@
   "name": "markdown-word-count",
   "displayName": "Markdown Word Count",
   "description": "A Word Count extension for Markdown and plain text files,support CJK and Emoji, support selection count.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "CurlyBrackets",
   "engines": {
     "vscode": "^1.62.0"
