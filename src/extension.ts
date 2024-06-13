@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { count, IWordCountResult } from "@homegrown/word-counter";
+import getMarkdownContent from "./markdown";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -26,7 +27,7 @@ class WordCountUIUpdater {
     "characters" as const,
     "charactersWithSpaces" as const,
   ];
-  private statusBarShownCounts: typeof this.counts[number][] = [];
+  private statusBarShownCounts: (typeof this.counts)[number][] = [];
   private enableSelectionCount: boolean = false;
   private statusBarItem;
   private disposable: vscode.Disposable[] = [];
@@ -66,8 +67,9 @@ class WordCountUIUpdater {
     const configuration = vscode.workspace.getConfiguration(
       "markdown-word-count"
     );
-    const shownItemsConfig =
-      configuration.get<{ [_: string]: boolean }>("statusBarCounts");
+    const shownItemsConfig = configuration.get<{ [_: string]: boolean }>(
+      "statusBarCounts"
+    );
     this.statusBarShownCounts = shownItemsConfig
       ? this.counts.filter((count) => shownItemsConfig[count])
       : ["words"];
@@ -76,13 +78,24 @@ class WordCountUIUpdater {
   }
   update() {
     const editor = vscode.window.activeTextEditor;
-    if (!editor || !["markdown", "plaintext"].includes(editor.document.languageId)) {
+    if (!editor) {
       this.statusBarItem.hide();
       return;
     }
+    const isMarkdown = editor.document.languageId === "markdown";
+    const isPlaintext = editor.document.languageId === "plaintext";
+    if (!isMarkdown && !isPlaintext) {
+      this.statusBarItem.hide();
+      return;
+    }
+
     try {
       const docContent = editor.document.getText();
-      const markdownContent = docContent.replace(/(^\s\s*)|(\s\s*$)|/, "");
+      const {
+        content: markdownContent,
+        frontMatterEndLine,
+      } = getMarkdownContent(docContent);
+      const mainContent = isMarkdown ? markdownContent : docContent;
       const selectionCount: IWordCountResult = {
         words: 0,
         lines: 0,
@@ -91,6 +104,12 @@ class WordCountUIUpdater {
       };
       const selectionContent = editor.selections
         .map(({ start, end }) => {
+          if (end.line <= frontMatterEndLine) {
+            return "";
+          }
+          if (start.line <= frontMatterEndLine) {
+            start = new vscode.Position(frontMatterEndLine + 1, 0);
+          }
           const text = editor.document.getText(new vscode.Range(start, end));
           return text;
         })
@@ -107,7 +126,7 @@ class WordCountUIUpdater {
         });
       }
 
-      const fullTextCount = count(markdownContent);
+      const fullTextCount = count(mainContent);
       const SEPARATION = "/";
 
       const countText = {
@@ -133,7 +152,9 @@ class WordCountUIUpdater {
       this.statusBarItem.text = `$(markdown) ${this.statusBarShownCounts
         .map((id) => countText[id] ?? "")
         .join(" | ")}`;
-      this.statusBarItem.tooltip = Object.values(countText).map(text => text.replace(SEPARATION, ` ${SEPARATION} `)).join("\n");
+      this.statusBarItem.tooltip = Object.values(countText)
+        .map((text) => text.replace(SEPARATION, ` ${SEPARATION} `))
+        .join("\n");
       this.statusBarItem.show();
     } catch (e) {
       console.log(e);
